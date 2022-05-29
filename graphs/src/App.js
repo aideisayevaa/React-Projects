@@ -42,6 +42,11 @@ function App() {
     }
   ])
 
+  const findBigBarItem=(data)=>{ /* en boyuk olanin tapilmasi ucun yaradilan funksiya */
+    return data.sort((val1,val2)=>val2.value-val1.value)[0].value
+  }
+
+  const [bigBarData,setBigBarData]=useState(findBigBarItem(barData))
 
   const setBarDataWithRandom = () => {
     let data = [...barData] //barData arrayini ozune alir
@@ -58,7 +63,7 @@ function App() {
     let timer;
 
     timer = setInterval(() => {
-      setBarDataWithRandom()
+     // setBarDataWithRandom()
     }, 500) /* her 500 milli saniyede bir value deyeri deyisir yeni setBarDataWithRandom funksiyasyi her 0.5 saniyede bir icra olunur*/
   }, [])
 
@@ -67,13 +72,10 @@ function App() {
 
   return (
     <div>
+      {JSON.stringify(bigBarData)}
       {JSON.stringify(barData)}{/*  - bu formada yazanda eyani sekilde her 0.5 saniyede deyerlerin nece deyisdiyini gormus oluruq*/}
     </div>
   );
 }
 
 export default App;
-
-
-
-
