@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import Area from './components/Area';
 import './App.css';
+import ChartItem from './components/ChartItem';
 
 
 function App() {
@@ -63,16 +65,24 @@ function App() {
     let timer;
 
     timer = setInterval(() => {
-      // setBarDataWithRandom()
+      setBarDataWithRandom()
     }, 500) /* her 500 milli saniyede bir value deyeri deyisir yeni setBarDataWithRandom funksiyasyi her 0.5 saniyede bir icra olunur*/
   }, [])
 
 
-  const renderBarItem = (item, index) => {
+  const renderBarItem = (item) => {
     let rate = item.value / bigBarData
     rate = rate * (1000 - 40)
     const percent = (rate * 100) / 1040
-    console.log(percent)
+    /*  console.log(percent) */
+
+    return <ChartItem
+      key={item.id}
+      backgroundColor={item.color}
+      width={percent + "%"}
+      text={item.title}
+      count={item.value}
+    />
   }
 
   return (
@@ -80,9 +90,17 @@ function App() {
       {/* {JSON.stringify(bigBarData)}
       {JSON.stringify(barData)} */}{/*  - bu formada yazanda eyani sekilde her 0.5 saniyede deyerlerin nece deyisdiyini gormus oluruq*/}
 
-      {barData.map((item) => {
+      {/* {barData.map((item) => {
         renderBarItem(item)
-      })}
+      })} */}
+
+      <div className="app-title">
+        Yarışan qrafiklər
+      </div>
+
+      <Area data={barData}>
+        {barData.map((item) => renderBarItem(item))}
+      </Area>
     </div>
   );
 }
