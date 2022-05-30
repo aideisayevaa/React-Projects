@@ -55,7 +55,7 @@ function App() {
     data.forEach((item) => {  //foreach vasitesile bu aldigimiz arrayin icerisinde gezirik
       item.value += getRandomNumber() /* en basda verilen value ile random deyerler hesablayib toplayiriq ve her defesinde qiymet getdikce artir */
     })
-
+    setBigBarData(findBigBarItem(data))
     setBarData(data) //bu onu gosterirki her defe data melumatlarini guncelleyek
   }
 
@@ -70,7 +70,7 @@ function App() {
   }, [])
 
 
-  const renderBarItem = (item) => {
+  const renderBarItem = (item,index) => {
     let rate = item.value / bigBarData
     rate = rate * (1000 - 40)
     const percent = (rate * 100) / 1040
@@ -82,6 +82,7 @@ function App() {
       width={percent + "%"}
       text={item.title}
       count={item.value}
+      top={(item === 0 ? 10 : (index * 40) + 20) + 'px'}
     />
   }
 
@@ -99,7 +100,7 @@ function App() {
       </div>
 
       <Area data={barData}>
-        {barData.map((item) => renderBarItem(item))}
+        {barData.map((item, index) => renderBarItem(item, index))}
       </Area>
     </div>
   );
