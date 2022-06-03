@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import logo from './logo.png'
+import ReactDOM from "react-dom";
+
 
 const StyledHeader = styled.div`
     height: 20vh;

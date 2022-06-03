@@ -1,11 +1,13 @@
 import './App.css';
-import Header from './partials/Header';
 import React from 'react';
+import Routes from './components/Routes';
+import ReactDOM from "react-dom";
+
 
 function App() {
   return (
     <div className="App">
-      <Header />
+      <Routes />
     </div>
   );
 }
